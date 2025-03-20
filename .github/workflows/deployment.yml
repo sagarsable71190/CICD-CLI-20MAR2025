@@ -43,7 +43,7 @@ jobs:
   build-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
     needs: cleaner
-    runs-on: windows-latest
+    runs-on: self-hosted
     #runs-on: self-hosted
     steps: 
       - name: Check out repository code
@@ -62,7 +62,7 @@ jobs:
   #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   publish-uipath-nuget-package-Dev:
     needs: build-uipath-nuget-package
-    runs-on: windows-latest
+    runs-on: self-hosted
     #runs-on: self-hosted
     steps: 
       - name: Download UiPath Artifacts

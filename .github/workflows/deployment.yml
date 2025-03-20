@@ -16,7 +16,7 @@ env:
 
 jobs:
   print-details:
-    runs-on: self-hosted
+    runs-on: windows-latest
     #runs-on: self-hosted
     steps:
       - name: echo-default-env-variables
@@ -31,7 +31,7 @@ jobs:
           echo "GITHUB_SHA: ${GITHUB_SHA}"
           echo "GITHUB_REF: ${GITHUB_REF}"
   cleaner:
-    runs-on: self-hosted
+    runs-on: windows-latest
     #runs-on: self-hosted
     steps:
       - name: Runner workspace path
@@ -42,7 +42,7 @@ jobs:
   build-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
     needs: cleaner
-    runs-on: self-hosted
+    runs-on: windows-latest
     #runs-on: self-hosted
     steps: 
       - name: Check out repository code
@@ -61,7 +61,7 @@ jobs:
   #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   publish-uipath-nuget-package-Dev:
     needs: build-uipath-nuget-package
-    runs-on: self-hosted
+    runs-on: windows-latest
     #runs-on: self-hosted
     steps: 
       - name: Download UiPath Artifacts

@@ -62,6 +62,12 @@ Param (
     [string] $environment_list = "", #The comma-separated list of environments to deploy the package to. If the environment does not belong to the default folder (organization unit) it must be prefixed with the folder name, e.g. AccountingTeam\TestEnvironment
     [string] $disableTelemetry = "", #Disable telemetry data.
     [string] $cli_url = "" #url to downlaod uiapth cli
+    [string] $version = "", #Package version.
+    [switch] $autoVersion, #Auto-generate package version.
+    [string] $outputType = "", #Force the output to a specific type.  
+    [string] $disableTelemetry = "", #Disable telemetry data.
+    [string] $uipathCliFilePath = "", #if not provided, the script will auto download the cli from uipath public feed. the script was testing on version 23.10.8753.32995.
+    [string] $SpecificCLIVersion = "", #CLI version to auto download if uipathCliFilePath not provided
 
 )
 function WriteLog

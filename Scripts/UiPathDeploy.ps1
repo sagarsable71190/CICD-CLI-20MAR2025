@@ -61,7 +61,7 @@ Param (
     [string] $language = "", #The orchestrator language.  
     [string] $environment_list = "", #The comma-separated list of environments to deploy the package to. If the environment does not belong to the default folder (organization unit) it must be prefixed with the folder name, e.g. AccountingTeam\TestEnvironment
     [string] $disableTelemetry = "", #Disable telemetry data.
-    [string] $cli_url = "" #url to downlaod uiapth cli
+    [string] $cli_url = "", #url to downlaod uiapth cli
     [string] $version = "", #Package version.
     [switch] $autoVersion, #Auto-generate package version.
     [string] $outputType = "", #Force the output to a specific type.  

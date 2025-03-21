@@ -50,6 +50,7 @@ Examples:
 Param (
 
     #Required
+    [Parameter(Mandatory=$true, Position = 0)]
     [string] $packages_path = "", # Required. The path to a folder containing packages, or to a package file.
     [string] $orchestrator_url = "", #Required. The URL of the Orchestrator instance.
     [string] $orchestrator_tenant = "", #Required. The tenant of the Orchestrator instance.
@@ -65,9 +66,10 @@ Param (
     [string] $version = "", #Package version.
     [switch] $autoVersion, #Auto-generate package version.
     [string] $outputType = "", #Force the output to a specific type.  
-    [string] $disableTelemetry = "", #Disable telemetry data.
     [string] $uipathCliFilePath = "", #if not provided, the script will auto download the cli from uipath public feed. the script was testing on version 23.10.8753.32995.
     [string] $SpecificCLIVersion = "", #CLI version to auto download if uipathCliFilePath not provided
+    [Parameter(ValueFromRemainingArguments = $true)]
+    $remainingArgs
 
 )
 function WriteLog

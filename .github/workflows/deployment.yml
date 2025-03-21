@@ -62,7 +62,7 @@ jobs:
   #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   publish-uipath-nuget-package-Dev:
     needs: build-uipath-nuget-package
-    runs-on: self-hosted
+    runs-on: windows-latest
     #runs-on: self-hosted
     steps: 
       - name: Download UiPath Artifacts

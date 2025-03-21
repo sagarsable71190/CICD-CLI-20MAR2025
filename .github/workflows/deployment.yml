@@ -41,7 +41,7 @@ jobs:
         shell: powershell
         run: |
           echo "Cleaning up previous run"
-          rm -rf "${{ github.workspace }}"
+          Remove-Item "${{ github.workspace }}" -Recurse -Force
 #--------------------------------------------------------------------------------------
   build-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest

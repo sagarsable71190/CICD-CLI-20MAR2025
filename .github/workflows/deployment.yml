@@ -43,7 +43,7 @@ jobs:
         # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it.
         uses: actions/checkout@v4
       - name: Build Nuget Package
-        shell: pwsh
+        shell: powershell
         run:  ${{ github.workspace }}\Scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package -autoVersion -cli_url ${{env.CLI_URL}}
       - name: Upload UiPath Artifacts
         uses: actions/upload-artifact@v4
@@ -63,6 +63,6 @@ jobs:
         with:
           name: Artifacts
       - name: Publish Nuget Package to DEV
-        shell: pwsh
+        shell: powershell
         run: |
          ${{ github.workspace }}\Scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -a ${{env.ORCH_ACC_NAME}} -I ${{env.ORCH_CLIENT_ID}}  -s ${{env.ORCH_USER_KEY}}  --applicationscope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -o "Shared" -cli_url ${{env.CLI_URL}}

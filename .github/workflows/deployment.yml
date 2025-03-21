@@ -12,7 +12,7 @@ env:
   ORCH_CLIENT_ID: fb9a5e5c-bada-4dd8-aee3-a9144b601b41
   ORCH_USER_KEY: _mJ7U^!t8FWhe0Zs
   ORCH_ACC_NAME: uipathtamindia
-  CLI_URL: "https://uipath.pkgs.visualstudio.com/Public.Feeds/_packaging/UiPath-Official/nuget/v3/flat2/UiPath.CLI.Windows/22.10.8438.32859/UiPath.CLI.Windows.22.10.8438.32859.nupkg"
+  CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/24.12.9166.24491"
 
 jobs:
   print-details:

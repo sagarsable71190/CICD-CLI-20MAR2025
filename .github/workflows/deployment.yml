@@ -30,6 +30,9 @@ jobs:
           echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           echo "GITHUB_SHA: ${GITHUB_SHA}"
           echo "GITHUB_REF: ${GITHUB_REF}"
+
+        shell: bash
+        working-directory: C:\actions-runner\_work
 #---------------------------------------------------------------------------------------        
   cleaner:
     runs-on: windows-latest

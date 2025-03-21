@@ -16,7 +16,7 @@ env:
   CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/24.12.9166.24491"
 
 jobs:
-  print-details:
+  Print-Environment-Variables:
     runs-on: [self-hosted, Windows, X64]
     #runs-on: self-hosted
     steps:
@@ -43,9 +43,9 @@ jobs:
 #          echo "Cleaning up previous run"
 #          Remove-Item "${{ github.workspace }}" -Recurse -Force
 #--------------------------------------------------------------------------------------
-  build-uipath-nuget-package:
+  Build-UiPath-NuGet-Package:
     # You should be able to run on windows 2019 or windows latest
-    needs: print-details
+    needs: Print-Environment-Variables
     runs-on: [self-hosted, Windows, X64]
     #runs-on: self-hosted
     steps: 
@@ -63,8 +63,8 @@ jobs:
            package/*.*
            scripts/*.ps1
   #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  publish-uipath-nuget-package-Dev:
-    needs: build-uipath-nuget-package
+  Publish-UiPath-Nuget-Package-DEV:
+    needs: Build-UiPath-NuGet-Package
     runs-on: [self-hosted, Windows, X64]
     #runs-on: self-hosted
     steps: 

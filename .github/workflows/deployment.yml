@@ -27,7 +27,7 @@ jobs:
           echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
           echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
           echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "C:\actions-runner\_work" | Out-File -FilePath $env:GITHUB_WORKSPACE -Encoding utf8 -Append
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
           echo "GITHUB_SHA: ${GITHUB_SHA}"
           echo "GITHUB_REF: ${GITHUB_REF}"
 

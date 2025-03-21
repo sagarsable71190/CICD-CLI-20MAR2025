@@ -65,4 +65,4 @@ jobs:
       - name: Publish Nuget Package to DEV
         shell: powershell
         run: |
-         ${{ github.workspace }}\scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} -orchestrator_tenant ${{env.ORCH_TENANT}} -account_name ${{env.ORCH_ACC_NAME}} -UserKey ${{env.ORCH_CLIENT_ID}}  -UserSecret ${{env.ORCH_USER_KEY}} -folder_organization_unit "Shared" -cli_url ${{env.CLI_URL}}
+         ${{ github.workspace }}\scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} -orchestrator_tenant ${{env.ORCH_TENANT}} -account_name ${{env.ORCH_ACC_NAME}} -applicationId ${{env.ORCH_CLIENT_ID}}  -applicationSecret ${{env.ORCH_USER_KEY}} -folder_organization_unit "Shared" -cli_url ${{env.CLI_URL}}

@@ -32,20 +32,20 @@ jobs:
           echo "GITHUB_SHA: ${GITHUB_SHA}"
           echo "GITHUB_REF: ${GITHUB_REF}"
 #---------------------------------------------------------------------------------------        
-  cleaner:
-    needs: print-details
-    runs-on: [self-hosted, Windows, X64]
-    #runs-on: self-hosted
-    steps:
-      - name: Runner workspace path
-        shell: powershell
-        run: |
-          echo "Cleaning up previous run"
-          Remove-Item "${{ github.workspace }}" -Recurse -Force
+#  cleaner:
+#    needs: print-details
+#    runs-on: [self-hosted, Windows, X64]
+#    #runs-on: self-hosted
+#    steps:
+#      - name: Runner workspace path
+#        shell: powershell
+#        run: |
+#          echo "Cleaning up previous run"
+#          Remove-Item "${{ github.workspace }}" -Recurse -Force
 #--------------------------------------------------------------------------------------
   build-uipath-nuget-package:
     # You should be able to run on windows 2019 or windows latest
-    needs: cleaner
+    needs: print-details
     runs-on: [self-hosted, Windows, X64]
     #runs-on: self-hosted
     steps: 

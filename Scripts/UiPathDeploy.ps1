@@ -82,7 +82,7 @@ $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 $debugLog = "$scriptPath\orchestrator-package-deploy.log"
 
 #Verifying UiPath CLI folder
-$uipathCLI = "$scriptPath\uipathcli\tools\uipcli.exe"
+$uipathCLI = "$scriptPath\uipathcli\23.10.8753.32995\tools\uipcli.exe"
 
 WriteLog "-----------------------------------------------------------------------------"
 WriteLog "uipcli location :   $uipathCLI"

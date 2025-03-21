@@ -15,22 +15,6 @@ env:
   CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/24.12.9166.24491"
 
 jobs:
-  print-details:
-    runs-on: self-hosted
-    #runs-on: self-hosted
-    steps:
-      - name: echo-default-env-variables
-        run: |
-          echo "Home: ${HOME}"
-          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_SHA: ${GITHUB_SHA}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
-
 #---------------------------------------------------------------------------------------        
   cleaner:
     runs-on: windows-latest

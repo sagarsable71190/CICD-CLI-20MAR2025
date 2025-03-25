@@ -98,4 +98,4 @@ jobs:
       - name: Publish Nuget Package to DEV
         shell: powershell
         run: |
-         ${{ github.workspace }}\scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} -orchestrator_tenant ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_APP_ID}}  -UserSecret ${{env.ORCH_APP_SECRET}} -account_name ${{env.ORCH_ACC_NAME}} -applicationscope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -folder_organization_unit "Shared" -uipathCliFilePath ${{env.CLI_PATH}}
+         ${{env.CLI_File_PATH}} package deploy ${{ github.workspace }}\package ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -I ${{env.ORCH_APP_ID}}  -S ${{env.ORCH_APP_SECRET}} -a ${{env.ORCH_ACC_NAME}} --applicationScope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -o "Shared"

@@ -4,9 +4,6 @@ on:
   push:
     branches: [DEV]
 
-
-
-
 # Here the environment variable is declared in workflow level
 env:
   # Replace with your Orchestrator Values 
@@ -24,32 +21,17 @@ env:
 #---------------------------------------------------------------------------------------   
 
 jobs:
-  Print-Environment-Variables:
-    runs-on: [self-hosted, Windows, X64]
-    #runs-on: self-hosted
-    steps:
-      - name: echo-default-env-variables
-        run: |
-          echo "Home: ${HOME}"
-          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_SHA: ${GITHUB_SHA}"
-          echo "GITHUB_REF: ${GITHUB_REF}"
 #---------------------------------------------------------------------------------------        
-#  cleaner:
+  Cleaning-Workspace:
 #    needs: print-details
-#    runs-on: [self-hosted, Windows, X64]
-#    #runs-on: self-hosted
-#    steps:
-#      - name: Runner workspace path
-#        shell: powershell
-#        run: |
-#          echo "Cleaning up previous run"
-#          Remove-Item "${{ github.workspace }}" -Recurse -Force
+     runs-on: [self-hosted, Windows, X64]
+    #runs-on: self-hosted
+     steps:
+      - name: Runner workspace path
+        shell: powershell
+        run: |
+          echo "Cleaning up previous run"
+          Remove-Item "${{ github.workspace }}" -Recurse -Force
 #---------------------------------------------------------------------------------------
   Get-UiPath-CLI:
     # You should be able to run on windows 2019 or windows latest

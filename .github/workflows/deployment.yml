@@ -63,9 +63,9 @@ jobs:
               if (-Not (Test-Path "C:\\uipathcli\\23.10.8753.32995\\tools\\uipcli.exe") {
                   New-Item -Path "C:\\" -ItemType "directory" -Name "uipathcli";
 
-                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/$CLI_File_Version/content" -OutFile "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\\cli.zip";
-                  Expand-Archive -LiteralPath "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\\cli.zip" -DestinationPath "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\";
-                  WriteLog "UiPath CLI is downloaded and extracted in folder "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\""
+                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/23.10.8753.32995/content" -OutFile "C:\\uipathcli\\23.10.8753.32995\\cli.zip";
+                  Expand-Archive -LiteralPath "C:\\uipathcli\\23.10.8753.32995\\cli.zip" -DestinationPath "C:\\uipathcli";
+                  WriteLog "UiPath CLI is downloaded and extracted in folder "C:\\uipathcli""
                   
                   #Invoke-WebRequest "https://www.myget.org/F/uipath-dev/api/v2/package/UiPath.CLI/1.0.7985.19721" -OutFile "D:\\uipathcli\\cli.zip";
                   #Expand-Archive -LiteralPath "D:\\uipathcli\\cli.zip" -DestinationPath "D:\\uipathcli";

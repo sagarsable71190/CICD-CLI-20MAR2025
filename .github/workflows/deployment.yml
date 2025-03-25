@@ -62,7 +62,7 @@ jobs:
       run: |
               if (-Not (Test-Path -Path ${{env.CLI_File_PATH}})){
                   New-Item -Path ${{env.CLI_Folder_PATH}} -ItemType "directory" -Name "uipathcli" -Force | out-Null
-                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/${{env.CLI_File_Version}}/content" -OutFile "${{env.CLI_File_Version}}\uipathcli\\cli.zip";
+                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/${{env.CLI_File_Version}}/content" -OutFile "${{env.CLI_FOLDER_PATH}}\uipathcli\\cli.zip";
                   Expand-Archive -LiteralPath "${{env.CLI_FOLDER_PATH}}\uipathcli\\cli.zip" -DestinationPath "${{env.CLI_FOLDER_PATH}}\uipathcli";
               }      
 #--------------------------------------------------------------------------------------

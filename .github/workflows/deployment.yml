@@ -109,7 +109,7 @@ jobs:
       - name: Run Job
         shell: powershell
         run: |
-            $jsonfilepath: ${{ github.workspace }}\project.json
-            $json: Get-Content -Path $jsonFilePath | Out-String | ConvertFrom-Json
-            $Name: $json.name
+            $jsonfilepath = ${{ github.workspace }}\project.json
+            $json = Get-Content -Path $jsonFilePath | Out-String | ConvertFrom-Json
+            $Name = $json.name
             ${{env.CLI_File_PATH}} job run $Name ${{ github.workspace }}\package ${{env.ORCH_URL}} ${{env.ORCH_TENANT}} -A${{env.ORCH_ACC_NAME}} -I ${{env.ORCH_APP_ID}}  -S ${{env.ORCH_APP_SECRET}} --applicationScope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -o "Shared"

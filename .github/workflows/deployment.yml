@@ -17,7 +17,7 @@ env:
   ORCH_ACC_NAME: UiPathTAMIndia
   ORCH_APP_SCOPES: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users"
   CLI_File_Version: "23.10.8753.32995"
-  CLI_File_PATH: "C:/uipathcli/$(env.CLI_PATH)/tools/uipcli.exe"
+  CLI_File_PATH: "C:/uipathcli/$(CLI_File_Version)/tools/uipcli.exe"
   CLI_Folder_PATH: "C:/"
   CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/$(env.CLI_PATH)"
   

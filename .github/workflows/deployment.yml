@@ -4,6 +4,9 @@ on:
   push:
     branches: [DEV]
 
+
+
+
 # Here the environment variable is declared in workflow level2
 env:
   # Replace with your Orchestrator Values 
@@ -13,7 +16,12 @@ env:
   ORCH_APP_SECRET: 3a_oeu6fP2~0t%wH
   ORCH_ACC_NAME: UiPathTAMIndia
   ORCH_APP_SCOPES: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users"
-  CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/24.12.9166.24491"
+  CLI_File_Version: "23.10.8753.32995"
+  CLI_File_PATH: C:/uipathcli/ ${{env.CLI_PATH}} /tools/uipcli.exe
+  CLI_Folder_PATH: C://
+  CLI_URL: https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/${{env.CLI_PATH}}
+  
+#---------------------------------------------------------------------------------------   
 
 jobs:
   Print-Environment-Variables:
@@ -42,10 +50,33 @@ jobs:
 #        run: |
 #          echo "Cleaning up previous run"
 #          Remove-Item "${{ github.workspace }}" -Recurse -Force
+#---------------------------------------------------------------------------------------
+  Get-UiPath-CLI:
+    # You should be able to run on windows 2019 or windows latest
+    needs: Print-Environment-Variables
+    runs-on: [self-hosted, Windows, X64]
+    #runs-on: self-hosted
+    steps:
+    - name: Get UiPath CLI
+      run: |
+              if (-Not (Test-Path $(CLI_File_PATH))) {
+                  New-Item -Path $(CLI_Folder_PATH) -ItemType "directory" -Name "uipathcli";
+
+                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/$CLI_File_Version/content" -OutFile "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\\cli.zip";
+                  Expand-Archive -LiteralPath "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\\cli.zip" -DestinationPath "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\";
+                  WriteLog "UiPath CLI is downloaded and extracted in folder "$(CLI_Folder_PATH)\\uipathcli\\$CLI_File_Version\""
+                  
+                  #Invoke-WebRequest "https://www.myget.org/F/uipath-dev/api/v2/package/UiPath.CLI/1.0.7985.19721" -OutFile "D:\\uipathcli\\cli.zip";
+                  #Expand-Archive -LiteralPath "D:\\uipathcli\\cli.zip" -DestinationPath "D:\\uipathcli";
+                  
+              } else {
+                  Write-Output "UiPath CLI already exists";
+              }
+
 #--------------------------------------------------------------------------------------
   Build-UiPath-NuGet-Package:
     # You should be able to run on windows 2019 or windows latest
-    needs: Print-Environment-Variables
+    needs: Get-UiPath-CLI
     runs-on: [self-hosted, Windows, X64]
     #runs-on: self-hosted
     steps: 
@@ -54,7 +85,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Build Nuget Package
         shell: powershell
-        run:  ${{ github.workspace }}\Scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package -autoVersion -cli_url ${{env.CLI_URL}}
+        run:  ${{ github.workspace }}\Scripts\UiPathPack.ps1 ${{ github.workspace }}\project.json -destination_folder ${{ github.workspace }}\package -autoVersion -uipathCliFilePath ${{env.CLI_PATH}}
       - name: Upload UiPath Artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -75,4 +106,4 @@ jobs:
       - name: Publish Nuget Package to DEV
         shell: powershell
         run: |
-         ${{ github.workspace }}\scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} -orchestrator_tenant ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_APP_ID}}  -UserSecret ${{env.ORCH_APP_SECRET}} -account_name ${{env.ORCH_ACC_NAME}} -applicationscope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -folder_organization_unit "Shared" -cli_url ${{env.CLI_URL}}
+         ${{ github.workspace }}\scripts\UiPathDeploy.ps1 -packages_path ${{ github.workspace }}\package -orchestrator_url ${{env.ORCH_URL}} -orchestrator_tenant ${{env.ORCH_TENANT}} -UserKey ${{env.ORCH_APP_ID}}  -UserSecret ${{env.ORCH_APP_SECRET}} -account_name ${{env.ORCH_ACC_NAME}} -applicationscope "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users" -folder_organization_unit "Shared" -uipathCliFilePath ${{env.CLI_PATH}}

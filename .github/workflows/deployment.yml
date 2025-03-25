@@ -18,8 +18,8 @@ env:
   ORCH_APP_SCOPES: "OR.Assets OR.BackgroundTasks OR.Execution OR.Folders OR.Jobs OR.Machines OR.Monitoring OR.Robots OR.Settings OR.TestSetExecutions OR.TestSets OR.TestSetSchedules OR.Users"
   CLI_File_Version: 23.10.8753.32995
   CLI_Folder_PATH: "C:\\"
-  CLI_File_PATH: C:\\uipathcli\\${{env.CLI_File_Version}}\\tools\\uipcli.exe
-  CLI_URL: https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/${{env.CLI_File_Version}}
+  CLI_File_PATH: "C:\\uipathcli\\23.10.8753.32995\\tools\\uipcli.exe"
+  CLI_URL: "https://uipath.visualstudio.com/Public.Feeds/_artifacts/feed/UiPath-Official/NuGet/UiPath.CLI.Windows/overview/23.10.8753.32995"
   
 #---------------------------------------------------------------------------------------   
 
@@ -61,8 +61,8 @@ jobs:
       shell: powershell
       run: |
               if (-Not (Test-Path -Path ${{env.CLI_File_PATH}})){
-                  New-Item -Path "C:\\" -ItemType "directory" -Name "uipathcli" -Force | out-Null
-                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/23.10.8753.32995/content" -OutFile "C:\\uipathcli\\cli.zip";
+                  New-Item -Path ${{env.CLI_Folder_PATH}} -ItemType "directory" -Name "uipathcli" -Force | out-Null
+                  Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/${{env.CLI_File_Version}}/content" -OutFile "C:\\uipathcli\\cli.zip";
                   Expand-Archive -LiteralPath "C:\\uipathcli\\cli.zip" -DestinationPath "C:\\uipathcli";
               }
 #--------------------------------------------------------------------------------------

@@ -60,7 +60,7 @@ jobs:
     - name: Get UiPath CLI
       shell: powershell
       run: |
-              if (-Not (Test-Path -Path $(CLI_File_PATH))){
+              if (-Not (Test-Path -Path ${{CLI_File_PATH}})){
                   New-Item -Path "C:\\" -ItemType "directory" -Name "uipathcli" -Force | out-Null
                   Invoke-WebRequest "https://uipath.pkgs.visualstudio.com/Public.Feeds/_apis/packaging/feeds/1c781268-d43d-45ab-9dfc-0151a1c740b7/nuget/packages/UiPath.CLI.Windows/versions/23.10.8753.32995/content" -OutFile "C:\\uipathcli\\cli.zip";
                   Expand-Archive -LiteralPath "C:\\uipathcli\\cli.zip" -DestinationPath "C:\\uipathcli";

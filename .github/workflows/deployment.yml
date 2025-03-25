@@ -10,7 +10,7 @@ on:
 # Here the environment variable is declared in workflow level
 env:
   # Replace with your Orchestrator Values 
-  ORCH_URL: "https://staging.uipath.com/uipathtamindia"
+  ORCH_URL: "https://staging.uipath.com"
   ORCH_TENANT: SagarSable
   ORCH_APP_ID: fb9a5e5c-bada-4dd8-aee3-a9144b601b41
   ORCH_APP_SECRET: A_8PNjkGulL#a9K@

@@ -31,7 +31,7 @@ jobs:
         shell: powershell
         run: |
           echo "Cleaning up previous run"
-          Remove-Item "C:\\actions-runner\\_work\\" -Recurse -Force
+          Remove-Item "C:\\actions-runner\\_work\\CICD-CLI-20MAR202566" -Recurse -Force
 #---------------------------------------------------------------------------------------
   Get-UiPath-CLI:
     # You should be able to run on windows 2019 or windows latest

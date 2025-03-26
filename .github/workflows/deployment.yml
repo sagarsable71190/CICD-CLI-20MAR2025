@@ -83,7 +83,7 @@ jobs:
           -A${{env.ORCH_ACC_NAME}} `
           -I ${{env.ORCH_APP_ID}}  `
           -S ${{env.ORCH_APP_SECRET}} `
-          --applicationScope ${{ORCH_APP_SCOPES}} `
+          --applicationScope ${{env.ORCH_APP_SCOPES}} `
           -o "Shared"
 
 #--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -104,5 +104,5 @@ jobs:
             -A${{env.ORCH_ACC_NAME}} `
             -I ${{env.ORCH_APP_ID}}  `
             -S ${{env.ORCH_APP_SECRET}} `
-            --applicationScope ${{ORCH_APP_SCOPES}} `
+            --applicationScope ${{env.ORCH_APP_SCOPES}} `
             -o "Shared"
